@@ -13,7 +13,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
         - name: Backstage Init
-          run:
+          run: |
             npm install -g @backstage/create-app@latest
             export BACKSTAGE_APP_NAME=sylwetan-backstage
             npx @backstage/create-app@latest --path src --skip-install
