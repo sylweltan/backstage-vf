@@ -21,6 +21,14 @@ jobs:
             echo "npx --version: $(npx --version)"
             echo "npm --version: $(npm --version)"
             echo "yarn --version: $(yarn --version)"
+        - uses: actions/setup-node@v4
+          with:
+            node-version: 20
+        - name: Ugly Debug2
+          run: |
+              echo "npx --version: $(npx --version)"
+              echo "npm --version: $(npm --version)"
+              echo "yarn --version: $(yarn --version)"
         - name: Backstage Init
           run: |
             npm install -g @backstage/create-app@latest
