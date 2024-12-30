@@ -12,6 +12,15 @@ jobs:
     steps:
         - name: Checkout
           uses: actions/checkout@v4
+        - name: Ugly Debug
+          run: |
+            echo ${{ github.repository }}
+            echo ${{ github.actor }}
+            echo ${{ secrets.GITHUB_TOKEN }}
+            echo ${{ env.TAG }}
+            echo "npx --version: $(npx --version)"
+            echo "npm --version: $(npm --version)"
+            echo "yarn --version: $(yarn --version)"
         - name: Backstage Init
           run: |
             npm install -g @backstage/create-app@latest
