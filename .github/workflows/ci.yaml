@@ -18,6 +18,7 @@ jobs:
             echo ${{ github.actor }}
             echo ${{ secrets.GITHUB_TOKEN }}
             echo ${{ env.TAG }}
+            echo "node --version: $(node --version)"
             echo "npx --version: $(npx --version)"
             echo "npm --version: $(npm --version)"
             echo "yarn --version: $(yarn --version)"
@@ -26,9 +27,11 @@ jobs:
             node-version: 20
         - name: Ugly Debug2
           run: |
+              echo "node --version: $(node --version)"
               echo "npx --version: $(npx --version)"
               echo "npm --version: $(npm --version)"
               echo "yarn --version: $(yarn --version)"
+              npm install -g yarn@4.4.1
         - name: Backstage Init
           run: |
             npm install -g @backstage/create-app@latest
