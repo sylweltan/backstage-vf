@@ -31,7 +31,8 @@ jobs:
               echo "npx --version: $(npx --version)"
               echo "npm --version: $(npm --version)"
               echo "yarn --version: $(yarn --version)"
-              npm install -g yarn@4.4.1
+              # npm install -g yarn@4.4.1
+              npm install -g yarn@latest
         - name: Backstage Init
           run: |
             npm install -g @backstage/create-app@latest
