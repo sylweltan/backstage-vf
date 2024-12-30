@@ -31,8 +31,6 @@ jobs:
               echo "npx --version: $(npx --version)"
               echo "npm --version: $(npm --version)"
               echo "yarn --version: $(yarn --version)"
-              # npm install -g yarn@4.4.1
-              # npm install -g yarn@latest
               npm install -g corepack
         - name: Backstage Init
           run: |
