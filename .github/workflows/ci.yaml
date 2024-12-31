@@ -22,6 +22,7 @@ jobs:
             echo "npx --version: $(npx --version)"
             echo "npm --version: $(npm --version)"
             echo "yarn --version: $(yarn --version)"
+            echo "ls -ltrh: $(ls -ltrh)"
         - uses: actions/setup-node@v4
           with:
             node-version: 20
@@ -37,6 +38,9 @@ jobs:
             npm install -g @backstage/create-app@latest
             export BACKSTAGE_APP_NAME=sylwetan-backstage
             npx @backstage/create-app@latest --path src --skip-install
+            echo "ls -ltrh: $(ls -ltrh)"
+            echo "ls -ltrh src: $(ls -ltrh src)"
+            echo "ls -ltrh src/examples: $(ls -ltrh src/examples)"
         - name: Plugins
           run: |
             yarn --cwd src/packages/backend add @backstage/plugin-scaffolder-backend-module-github
@@ -59,6 +63,6 @@ jobs:
             tags: ghcr.io/${{ github.repository }}:${{ env.TAG }},ghcr.io/${{ github.repository }}:latest
             build-args: |
               SRC=src
-            # cache-from: type=gha
-            # cache-to: type=gha,mode=max
+            cache-from: type=gha
+            cache-to: type=gha,mode=max
             platforms: linux/amd64,linux/arm64
