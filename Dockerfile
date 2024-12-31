@@ -57,6 +57,7 @@ RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid
 COPY --from=build --chown=node:node /app/packages/backend/dist/bundle/ ./
 COPY --chown=node:node app-config*.yaml ./
 ARG SRC=backstage
+RUN echo "DEBUG" && echo "ls -la: $(ls -la)" && echo "ls -la $SRC: $(ls -la $SRC)" && echo "pwd: $(pwd)"
 COPY --chown=node:node $SRC/examples ./examples
 ENV NODE_ENV=production
 ENV NODE_OPTIONS="--no-node-snapshot"
