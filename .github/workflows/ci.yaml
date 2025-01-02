@@ -15,10 +15,11 @@ jobs:
           uses: actions/checkout@v4
         - name: Ugly Debug
           run: |
-            echo ${{ github.repository }}
-            echo ${{ github.actor }}
-            echo ${{ secrets.GITHUB_TOKEN }}
-            echo ${{ env.TAG }}
+            echo "echo github.repository: ${{ github.repository }}"
+            echo "echo github.actor: ${{ github.actor }}"
+            echo "secrets.GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+            echo "env.TAG: ${{ env.TAG }}"
+            echo "env.SRC: ${{ env.SRC }}"
             echo "node --version: $(node --version)"
             echo "npx --version: $(npx --version)"
             echo "npm --version: $(npm --version)"
@@ -36,13 +37,13 @@ jobs:
             export BACKSTAGE_APP_NAME=backstage
             npx @backstage/create-app@latest --path backstage --skip-install
             echo "ls -ltrh: $(ls -ltrh)"
-            echo "ls -ltrh ${{ env.src }}: $(ls -ltrh ${{ env.src }})"
-            echo "ls -ltrh ${{ env.src }}/examples: $(ls -ltrh ${{ env.src }}/examples)"
+            echo "ls -ltrh ${{ env.SRC }}: $(ls -ltrh ${{ env.SRC }})"
+            echo "ls -ltrh ${{ env.SRC }}/examples: $(ls -ltrh ${{ env.SRC }}/examples)"
         - name: Plugins
           run: |
-            yarn --cwd ${{ env.src }}/packages/backend add @backstage/plugin-scaffolder-backend-module-github
-            yarn --cwd ${{ env.src }}/packages/backend add @backstage/plugin-catalog-backend-module-github
-            cp packages/backend/src/index.ts ${{ env.src }}/packages/backend/src/index.ts
+            yarn --cwd ${{ env.SRC }}/packages/backend add @backstage/plugin-scaffolder-backend-module-github
+            yarn --cwd ${{ env.SRC }}/packages/backend add @backstage/plugin-catalog-backend-module-github
+            cp packages/backend/src/index.ts ${{ env.SRC }}/packages/backend/src/index.ts
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v3
         - name: Set up Docker Buildx
