@@ -23,21 +23,17 @@ jobs:
             echo "npm --version: $(npm --version)"
             echo "yarn --version: $(yarn --version)"
             echo "ls -ltrh: $(ls -ltrh)"
-        - uses: actions/setup-node@v4
-          with:
-            node-version: 20
-        - name: Ugly Debug2
+        # - uses: actions/setup-node@v4
+        #   with:
+        #     node-version: 20
+        - name: Setup Tools
           run: |
-              echo "node --version: $(node --version)"
-              echo "npx --version: $(npx --version)"
-              echo "npm --version: $(npm --version)"
-              echo "yarn --version: $(yarn --version)"
               npm install -g corepack
         - name: Backstage Init
           run: |
             npm install -g @backstage/create-app@latest
-            export BACKSTAGE_APP_NAME=sylwetan-backstage
-            npx @backstage/create-app@latest --path src --skip-install
+            export BACKSTAGE_APP_NAME=backstage
+            npx @backstage/create-app@latest --path backstage --skip-install
             echo "ls -ltrh: $(ls -ltrh)"
             echo "ls -ltrh src: $(ls -ltrh src)"
             echo "ls -ltrh src/examples: $(ls -ltrh src/examples)"
