@@ -92,6 +92,7 @@ COPY --from=build --chown=node:node /app/packages/backend/dist/bundle/ ./
 COPY --chown=node:node app-config*.yaml ./
 
 COPY --chown=node:node $SRC/examples ./examples
+COPY --from=build --chown=node:node /app/examples ./examples
 
 ENV NODE_ENV=production
 ENV NODE_OPTIONS="--no-node-snapshot"
