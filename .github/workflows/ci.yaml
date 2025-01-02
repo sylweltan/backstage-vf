@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TAG: 0.0.${{ github.run_number }}
+      SRC: backstage
     steps:
         - name: Checkout
           uses: actions/checkout@v4
@@ -35,13 +36,13 @@ jobs:
             export BACKSTAGE_APP_NAME=backstage
             npx @backstage/create-app@latest --path backstage --skip-install
             echo "ls -ltrh: $(ls -ltrh)"
-            echo "ls -ltrh src: $(ls -ltrh src)"
-            echo "ls -ltrh src/examples: $(ls -ltrh src/examples)"
+            echo "ls -ltrh ${{ env.src }}: $(ls -ltrh ${{ env.src }})"
+            echo "ls -ltrh ${{ env.src }}/examples: $(ls -ltrh ${{ env.src }}/examples)"
         - name: Plugins
           run: |
-            yarn --cwd src/packages/backend add @backstage/plugin-scaffolder-backend-module-github
-            yarn --cwd src/packages/backend add @backstage/plugin-catalog-backend-module-github
-            cp packages/backend/src/index.ts src/packages/backend/src/index.ts
+            yarn --cwd ${{ env.src }}/packages/backend add @backstage/plugin-scaffolder-backend-module-github
+            yarn --cwd ${{ env.src }}/packages/backend add @backstage/plugin-catalog-backend-module-github
+            cp packages/backend/src/index.ts ${{ env.src }}/packages/backend/src/index.ts
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v3
         - name: Set up Docker Buildx
@@ -58,7 +59,8 @@ jobs:
             push: true
             tags: ghcr.io/${{ github.repository }}:${{ env.TAG }},ghcr.io/${{ github.repository }}:latest
             build-args: |
-              SRC=src
+              SRCOLD=src
+              SRC=backend
             cache-from: type=gha
             cache-to: type=gha,mode=max
             platforms: linux/amd64,linux/arm64
