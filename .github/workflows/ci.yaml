@@ -39,10 +39,15 @@ jobs:
             echo "ls -ltrh: $(ls -ltrh)"
             echo "ls -ltrh ${{ env.SRC }}: $(ls -ltrh ${{ env.SRC }})"
             echo "ls -ltrh ${{ env.SRC }}/examples: $(ls -ltrh ${{ env.SRC }}/examples)"
+            echo "cd backstage:"
             cd backstage
             rm -f yarn.lock
+
+            echo "yarn install:"
             yarn install
+            echo "yarn tsc:"
             yarn tsc
+            echo "yarn build:backend:"
             yarn build:backend
         - name: Plugins
           run: |
