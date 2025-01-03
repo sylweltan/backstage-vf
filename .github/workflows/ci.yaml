@@ -44,6 +44,7 @@ jobs:
             rm -f yarn.lock
             echo "corepack enable"
             corepack enable
+            export YARN_ENABLE_IMMUTABLE_INSTALLS=false
 
             echo "yarn install:"
             yarn install
