@@ -39,6 +39,10 @@ jobs:
             echo "ls -ltrh: $(ls -ltrh)"
             echo "ls -ltrh ${{ env.SRC }}: $(ls -ltrh ${{ env.SRC }})"
             echo "ls -ltrh ${{ env.SRC }}/examples: $(ls -ltrh ${{ env.SRC }}/examples)"
+            cd backstage
+            yarn install
+            yarn tsc
+            yarn build:backend
         - name: Plugins
           run: |
             yarn --cwd ${{ env.SRC }}/packages/backend add @backstage/plugin-scaffolder-backend-module-github
