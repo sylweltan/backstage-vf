@@ -46,7 +46,8 @@ RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid
 
 ARG SRC=backstage
 
-COPY --chown=node:node $SRC/. .
+# COPY --chown=node:node $SRC/. .
+COPY --chown=node:node $SRC .
 
 RUN yarn tsc
 RUN yarn --cwd packages/backend build
@@ -67,7 +68,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
     apt-get install -y --no-install-recommends python3 g++ build-essential && \
-    rn -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
 
 #    yarn config set python /usr/bin/python3
 
