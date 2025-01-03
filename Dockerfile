@@ -91,7 +91,7 @@ RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid
 COPY --from=build --chown=node:node /app/packages/backend/dist/bundle/ ./
 COPY --chown=node:node app-config*.yaml ./
 
-COPY --chown=node:node $SRC/examples ./examples
+# COPY --chown=node:node $SRC/examples ./examples
 COPY --from=build --chown=node:node /app/examples ./examples
 
 ENV NODE_ENV=production
