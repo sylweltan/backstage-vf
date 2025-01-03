@@ -44,7 +44,7 @@ RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid
     #yarn install --immutable
     yarn install
 
-#ARG SRC=backstage
+ARG SRC=backstage
 
 COPY --chown=node:node $SRC/. .
 
