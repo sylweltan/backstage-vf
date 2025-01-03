@@ -46,7 +46,8 @@ ARG SRC=backstage
 
 # COPY --chown=node:node $SRC/. .
 # COPY --chown=node:node $SRC .
-COPY --chown=node:node ./backstage/. .
+# COPY --chown=node:node ./backstage/. .
+COPY --chown=node:node $SRC/. .
 
 RUN yarn tsc
 RUN yarn --cwd packages/backend build
