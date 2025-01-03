@@ -40,6 +40,7 @@ jobs:
             echo "ls -ltrh ${{ env.SRC }}: $(ls -ltrh ${{ env.SRC }})"
             echo "ls -ltrh ${{ env.SRC }}/examples: $(ls -ltrh ${{ env.SRC }}/examples)"
             cd backstage
+            rm -f yarn.lock
             yarn install
             yarn tsc
             yarn build:backend
