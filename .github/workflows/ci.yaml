@@ -42,6 +42,8 @@ jobs:
             echo "cd backstage:"
             cd backstage
             rm -f yarn.lock
+            echo "corepack enable"
+            corepack enable
 
             echo "yarn install:"
             yarn install
