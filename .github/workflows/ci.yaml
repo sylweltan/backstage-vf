@@ -39,19 +39,19 @@ jobs:
             echo "ls -ltrh: $(ls -ltrh)"
             echo "ls -ltrh ${{ env.SRC }}: $(ls -ltrh ${{ env.SRC }})"
             echo "ls -ltrh ${{ env.SRC }}/examples: $(ls -ltrh ${{ env.SRC }}/examples)"
-            echo "cd backstage:"
-            cd backstage
-            rm -f yarn.lock
-            echo "corepack enable"
-            corepack enable
-            export YARN_ENABLE_IMMUTABLE_INSTALLS=false
+            # echo "cd backstage:"
+            # cd backstage
+            # rm -f yarn.lock
+            # echo "corepack enable"
+            # corepack enable
+            # export YARN_ENABLE_IMMUTABLE_INSTALLS=false
 
-            echo "yarn install:"
-            yarn install
-            echo "yarn tsc:"
-            yarn tsc
-            echo "yarn build:backend:"
-            yarn build:backend
+            # echo "yarn install:"
+            # yarn install
+            # echo "yarn tsc:"
+            # yarn tsc
+            # echo "yarn build:backend:"
+            # yarn build:backend
         - name: Plugins
           run: |
             yarn --cwd ${{ env.SRC }}/packages/backend add @backstage/plugin-scaffolder-backend-module-github
